@@ -1,0 +1,12 @@
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /build
+COPY pom.xml .
+COPY microservice-servicio/pom.xml microservice-servicio/pom.xml
+COPY microservice-servicio/src microservice-servicio/src
+RUN mvn clean package -DskipTests -f microservice-servicio/pom.xml
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /build/microservice-servicio/target/*.jar app.jar
+EXPOSE 9003
+ENTRYPOINT ["java", "-jar", "app.jar"]

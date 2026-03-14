@@ -1,0 +1,12 @@
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /build
+COPY pom.xml .
+COPY microservice-gateway/pom.xml microservice-gateway/pom.xml
+COPY microservice-gateway/src microservice-gateway/src
+RUN mvn clean package -DskipTests -f microservice-gateway/pom.xml
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /build/microservice-gateway/target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
