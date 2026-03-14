@@ -27,12 +27,10 @@ public class ClienteRequest {
     private String cNumeroDocumento;
 
     @JsonProperty("cNombres")
-    @NotBlank(message = "Los nombres son obligatorios")
     @Size(max = 100)
     private String cNombres;
 
     @JsonProperty("cApellidoPaterno")
-    @NotBlank(message = "El apellido paterno es obligatorio")
     @Size(max = 100)
     private String cApellidoPaterno;
 
