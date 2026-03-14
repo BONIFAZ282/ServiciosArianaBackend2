@@ -1,0 +1,21 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: msvc-personal
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: ${DATABASE_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+eureka:
+  instance:
+    hostname: ${PERSONAL_HOSTNAME:app-personal-ariana.azurewebsites.net}
+    prefer-ip-address: false
+    non-secure-port: 80
+    secure-port: 443
+  client:
+    service-url:
+      defaultZone: https://${EUREKA_HOSTNAME:app-eureka-ariana.azurewebsites.net}/eureka/

@@ -1,0 +1,36 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    name: msvc-servicio
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databaseName=DBARIANASERVICES;trustServerCertificate=true
+    username: codel
+    password: "123"
+  # Configuración de correo (SendGrid)
+  mail:
+    host: smtp.sendgrid.net
+    port: 587
+    username: apikey
+    password: ${SENDGRID_API_KEY}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+# Configuración personalizada
+app:
+  mail:
+    from: bonihd48@gmail.com
+    enabled: true

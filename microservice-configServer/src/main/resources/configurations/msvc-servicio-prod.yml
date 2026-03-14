@@ -1,0 +1,37 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    name: msvc-servicio
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: ${DATABASE_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  mail:
+    host: smtp.sendgrid.net
+    port: 587
+    username: apikey
+    password: ${SENDGRID_API_KEY}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+eureka:
+  instance:
+    hostname: ${SERVICIO_HOSTNAME:app-servicio-ariana.azurewebsites.net}
+    prefer-ip-address: false
+    non-secure-port: 80
+    secure-port: 443
+  client:
+    service-url:
+      defaultZone: https://${EUREKA_HOSTNAME:app-eureka-ariana.azurewebsites.net}/eureka/
+
+app:
+  mail:
+    from: ${MAIL_FROM:bonihd48@gmail.com}
+    enabled: true

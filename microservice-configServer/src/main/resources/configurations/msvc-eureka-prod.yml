@@ -1,0 +1,20 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: msvc-eureka
+
+eureka:
+  instance:
+    hostname: ${EUREKA_HOSTNAME:app-eureka-ariana.azurewebsites.net}
+    prefer-ip-address: false
+    non-secure-port: 80
+    secure-port: 443
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: https://${EUREKA_HOSTNAME}/eureka/
+  server:
+    enable-self-preservation: false
