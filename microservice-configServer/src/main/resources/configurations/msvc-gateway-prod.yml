@@ -32,28 +32,23 @@ spring:
           uri: lb://msvc-security
           predicates:
             - Path=/api/security/**
-          filters:
-            - PreserveHostHeader
 
         - id: msvc-personal
           uri: lb://msvc-personal
           predicates:
             - Path=/api/personal/**
-          filters:
-            - PreserveHostHeader
 
         - id: msvc-servicio
           uri: lb://msvc-servicio
           predicates:
             - Path=/api/servicio/**
-          filters:
-            - PreserveHostHeader
+
 eureka:
   instance:
-    hostname: ${GATEWAY_HOSTNAME:app-gateway-ariana.azurewebsites.net}
+    hostname: ${GATEWAY_HOSTNAME:localhost}
     prefer-ip-address: false
     non-secure-port: 80
     secure-port: 443
   client:
     service-url:
-      defaultZone: https://${EUREKA_HOSTNAME:app-eureka-ariana.azurewebsites.net}/eureka/
+      defaultZone: https://${EUREKA_HOSTNAME:localhost}/eureka/
