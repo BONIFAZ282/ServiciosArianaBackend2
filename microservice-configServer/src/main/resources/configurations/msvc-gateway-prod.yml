@@ -42,7 +42,9 @@ spring:
           uri: lb://msvc-servicio
           predicates:
             - Path=/api/servicio/**
-
+      httpclient:
+        ssl:
+          use-insecure-trust-manager: true
 eureka:
   instance:
     hostname: ${GATEWAY_HOSTNAME:localhost}
